@@ -13,9 +13,9 @@ plotDownloadUI <- function(id, height = 400) {
     )
 }
 
-plotDownload <- function(input, output, session, plotFun, reactive_title) {
+plotDownload <- function(input, output, session, plotFun) {
     output$plot <- renderPlot({
-        plotFun(reactive_title())
+        plotFun()
     })
     
     output$download_plot <- downloadHandler(
@@ -23,7 +23,7 @@ plotDownload <- function(input, output, session, plotFun, reactive_title) {
             "plot.png"
         },
         content = function(file) {
-            ggsave(file, plotFun(reactive_title()), width = 16, height = 10.4)
+            ggsave(file, plotFun(), width = 16, height = 10.4)
         }
     )
 }

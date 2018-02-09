@@ -1,5 +1,10 @@
 shinyServer(function(input, output) {
-    plot_title <- reactive({input$plot_title})
-    callModule(plotDownload, "mtcars", plotMtcars, plot_title)
-    callModule(plotDownload, "iris", plotIris, plot_title)
+    plotMtcarsReactive <- reactive({
+        plotMtcars(input$plot_title)
+    })
+    plotIrisReactive <- reactive({
+        plotIris(input$plot_title)
+    })
+    callModule(plotDownload, "mtcars", plotMtcarsReactive)
+    callModule(plotDownload, "iris", plotIrisReactive)
 })
