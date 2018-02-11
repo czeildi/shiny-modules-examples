@@ -28,14 +28,16 @@ plotDownload <- function(input, output, session, plotFun) {
     )
 }
 
-plotMtcars <- function(title) {
-    ggplot(mtcars, aes(x = cyl, y = mpg)) + 
-        geom_point() + 
-        ggtitle(title)
+plotMtcars <- function(sample_ratio) {
+    mtcars %>% 
+        .[sample(nrow(.), floor(nrow(.) * sample_ratio)), ] %>% 
+        ggplot(aes(x = cyl, y = mpg)) + 
+        geom_point()
 }
 
-plotIris <- function(title) {
-    ggplot(iris, aes(x = Sepal.Width, y = Petal.Length)) + 
-        geom_point() + 
-        ggtitle(title)
+plotIris <- function(sample_ratio) {
+    iris %>% 
+        .[sample(nrow(.), floor(nrow(.) * sample_ratio)), ] %>% 
+        ggplot(aes(x = Sepal.Width, y = Petal.Length)) + 
+        geom_point()
 }
